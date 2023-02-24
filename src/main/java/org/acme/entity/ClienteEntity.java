@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-@MongoEntity(collection = "cliente_tarjeta")
+@MongoEntity(collection = "clientes")
 public class ClienteEntity extends ReactivePanacheMongoEntity{
     //6 digitoss
     private String pass;
@@ -15,6 +15,5 @@ public class ClienteEntity extends ReactivePanacheMongoEntity{
     private String apellidos;
     private String tipoDoc;
     private String numeroDoc;
-    private String numTelefono; 
     
 }
