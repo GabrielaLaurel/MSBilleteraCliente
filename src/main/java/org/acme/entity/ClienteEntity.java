@@ -15,5 +15,6 @@ public class ClienteEntity extends ReactivePanacheMongoEntity{
     private String apellidos;
     private String tipoDoc;
     private String numeroDoc;
+    private String estado;
     
 }

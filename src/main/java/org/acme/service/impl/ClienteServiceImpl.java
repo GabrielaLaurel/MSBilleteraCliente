@@ -1,10 +1,13 @@
 package org.acme.service.impl;
 
+import org.acme.client.WalletClient;
+import org.acme.client.dto.BilleteraDto;
+import org.acme.dto.ClienteDto;
 import org.acme.dto.ResponseDto;
 import org.acme.entity.ClienteEntity;
 import org.acme.repository.ClienteRepository;
 import org.acme.service.ClienteService;
-
+import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import io.smallrye.mutiny.Uni;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -13,7 +16,8 @@ import jakarta.inject.Inject;
 @ApplicationScoped
 public class ClienteServiceImpl implements ClienteService {
 
-
+    @RestClient
+    WalletClient billeteraClient;
     @Inject
     ClienteRepository clientRepository;
     @Override
@@ -45,5 +49,29 @@ public class ClienteServiceImpl implements ClienteService {
         }
     }
 
-    
+    @Override
+    public Uni<ResponseDto> addBilletera(BilleteraDto dto) {
+        System.out.println("IMPLEMENT");
+        System.out.println();
+       
+                      
+        System.out.println("inplemente addbillere");
+        
+        System.out.println(dto.getCelular());
+        
+        System.out.println();
+             return billeteraClient.add(dto);
+                         
+    }
+    private ClienteEntity toEntity(ClienteDto dto) {   
+        ClienteEntity cliente = new ClienteEntity();
+        cliente.setApellidos(dto.getApellidos());
+        cliente.setNombre(dto.getNombre());
+        cliente.setTipoDoc(dto.getTipoDoc());
+        cliente.setNumeroDoc(dto.getNumeroDoc());
+        cliente.setPass(dto.getPass());
+        cliente.setEstado(dto.getEstadoCliente());
+
+        return cliente;
+    }
 }

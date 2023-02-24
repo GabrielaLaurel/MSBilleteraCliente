@@ -1,5 +1,7 @@
 package org.acme.resource;
 
+import org.acme.client.dto.BilleteraDto;
+import org.acme.dto.ClienteDto;
 import org.acme.dto.ResponseDto;
 import org.acme.entity.ClienteEntity;
 import org.acme.service.ClienteService;
@@ -27,6 +29,14 @@ public class ClienteResource {
     @Operation(summary = "Registrar cliente billetera ",description = "Registrar en billetera")
     public Uni<ResponseDto> add(ClienteEntity cliente) {
         return clientService.add(cliente);
+    }
+    @Path("/wallet")
+    @POST
+    @Operation(summary = "Registrar cliente billetera ",description = "Registrar en billetera")
+    public Uni<ResponseDto> addBilletera(BilleteraDto dto) {
+        System.out.println("controller addbillere");
+        System.out.println();
+        return clientService.addBilletera(dto);
     }
 
     @GET
